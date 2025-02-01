@@ -1,0 +1,106 @@
+<div class="container">
+
+
+  <form action="" [formGroup]="employeeForm">
+
+    <label for="">Emp-Name:</label>
+    <input type="text" formControlName="name"> <br>
+  
+    <label for="">Company:</label>
+    <input type="text" formControlName="company"> <br>
+  
+    <label for="">Role:</label>
+    <input type="text" formControlName="role"> <br>
+  
+    <label for="">Package:</label>
+    <input type="number" formControlName="package"> <br>
+  
+    <label for="
+    "> DOB:</label>
+    <input type="date" formControlName="dob">
+
+    <!--Nested FormGroup-->
+
+    <div formGroupName="address">
+
+      <h4>Address:</h4>
+
+      <input type="text" placeholder="Addressline" formControlName="addressline"> <br> <br>
+
+      <input type="text" placeholder="City" formControlName="city"><br> <br>
+
+      <input type="text" placeholder="State" formControlName="state"> <br> <br>
+
+      <input type="number" placeholder="Pincode" formControlName="pincode">
+
+</div>
+
+<!--Dynamic Forms-->
+
+<label for="">Type::</label> <i> &nbsp;</i>
+
+<input type="radio" name="work"  value="remote" formControlName="type"  >
+
+<label for="">Work From Home</label>
+
+<input type="radio" name="work" value="workfromoffice" formControlName="type">
+<label for="">Work From Office</label>
+
+<div *ngIf="employeeForm.get('type')?.value=='remote'">
+
+  <label for="">Wifi Bill Amount::</label>
+  <input type="number" formControlName="wifibill">
+</div>
+<br>
+
+<div *ngIf="employeeForm.get('type')?.value=='workfromoffice'">
+
+  <label for="">Travel Bill Amount</label>
+  <input type="number" formControlName="transbil">
+
+</div>
+
+<button class="btn btn-info" (click)="moredetails()"> More Details</button>
+
+  <div formArrayName="details">
+
+    <div *ngFor="let detail of detailsFormArray.controls; let i=index">
+
+     
+
+        <h2>Details{{i+1}}</h2>
+
+        <label for="">Hike:</label>
+        <input type="number" formControlName="hike"> <br>
+
+        <label for="">Work Mode:</label>
+        <input type="text" formControlName="workMode"> <br>
+
+        <label for="">Travel Bill:</label>
+        <input type="number" formControlName="travelBill">
+
+        <button class="btn btn-info" (click)="delete(i)"> Delete Details</button>
+</div>
+
+</div>
+
+
+
+<button class="btn btn-info" (click)="create()"> Add New Emp Data</button>
+
+
+</form>
+  
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
